@@ -1,5 +1,14 @@
 #include "functions.h"
 
+class Snake {
+
+    public:
+        int length;
+        int position;
+
+        // default constructor
+        Snake(){}
+};
 
 void the_matrix_animation(LedControl lc, int n, int m){
 
@@ -13,11 +22,9 @@ void the_matrix_animation(LedControl lc, int n, int m){
     // length of the string between 4-13
     int l = (rand() % 5) + 4;
 
-
-
     // compute the range of the snake
-    int max_i, min_i;
-    max_i = min_i = 0;
+    int max_i, min_i, encoding;
+    max_i = min_i = encoding = 0;
 
     // for as long as the snake is in the display
     while (min_i < 6){
@@ -33,12 +40,10 @@ void the_matrix_animation(LedControl lc, int n, int m){
         }
         // Serial.println((String)"max_i: "+max_i);
         // update display
-        int encoding = snake_encode(column);
-        Serial.println(encoding);
-        Serial.println(i);
+        encoding = snake_encode(column);
 
         lc.setRow(0, i, encoding);
-        delay(20);
+        delay(100);
 
         // move the snake one possition forward
         max_i += 1;
@@ -53,7 +58,6 @@ void the_matrix_animation(LedControl lc, int n, int m){
         // Serial.println((String)"max_i: "+max_i);
         // Serial.println((String)"l: "+l);
         // Serial.println((String)"encoding: "+encoding);
-
         // Serial.println((String)"condition: "+(min_i < 7));
 
     }
